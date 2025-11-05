@@ -191,4 +191,3 @@ public class RegistrationActivity extends AppCompatActivity {
                 .show();
     }
 }
-
