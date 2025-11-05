@@ -1,4 +1,4 @@
-package com.example.registration_activity;
+package com.example.registration;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -191,3 +191,4 @@ public class RegistrationActivity extends AppCompatActivity {
                 .show();
     }
 }
+
