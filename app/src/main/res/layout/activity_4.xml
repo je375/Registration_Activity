@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRATION PAGE"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USERNAME"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Username"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PASSWORD"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM PASSWORD"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FIRST NAME"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter First Name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LAST NAME"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Last Name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-MAIL ADDRESS"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter E-mail"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="10dp" />
+
+        <!-- TO FIX -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BIRTHDATE"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/etBirthdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Date of Birth"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="none"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GENDER"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/genderGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/rbOthers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADDRESS"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address"
+            android:inputType="textPostalAddress"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTACT NUMBER"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Contact Number"
+            android:inputType="phone"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOBBIES"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/cbHobby1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Singing" />
+
+        <CheckBox
+            android:id="@+id/cbHobby2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dancing" />
+
+        <CheckBox
+            android:id="@+id/cbHobby3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playing" />
+
+        <CheckBox
+            android:id="@+id/cbHobby4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reading" />
+
+        <CheckBox
+            android:id="@+id/cbHobby5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cooking" />
+
+        <CheckBox
+            android:id="@+id/cbHobby6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walking" />
+
+        <CheckBox
+            android:id="@+id/cbHobby7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sleeping" />
+
+        <CheckBox
+            android:id="@+id/cbHobby8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eating" />
+
+        <CheckBox
+            android:id="@+id/cbHobby9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Excercise" />
+
+        <CheckBox
+            android:id="@+id/cbHobby10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drawing" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SECURITY QUESTIONS"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/security_questions"
+            android:layout_marginBottom="20dp" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/security_questions"
+            android:layout_marginBottom="20dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerQuestion3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/security_questions"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/purple"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>
