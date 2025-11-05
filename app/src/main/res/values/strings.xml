@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Registration</string>
+    <string name="app_name">Activity3</string>
+
+    <string-array name="security_questions">
+        <item>Select a question</item>
+        <item>What is your pet’s name?</item>
+        <item>What is your mother’s maiden name?</item>
+        <item>What city were you born in?</item>
+        <item>What is your nickname?</item>
+        <item>What is your favorite color?</item>
+    </string-array>
 </resources>
