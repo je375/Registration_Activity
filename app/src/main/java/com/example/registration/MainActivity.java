@@ -1,4 +1,4 @@
-package registration;
+package com.example.registration;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
         if (match) {
             Toast.makeText(context, "Logged in Successfully!", Toast.LENGTH_SHORT).show();
             Log.i("LOGIN", "Login successful for user: " + user);
+            Intent i = new Intent(MainActivity.this, WelcomeActivity.class);
+            i.putExtra("name", user);
+            startActivity(i);
+            etPassword.setText("");
         } else {
             new AlertDialog.Builder(context)
                     .setTitle("Login Failed")
