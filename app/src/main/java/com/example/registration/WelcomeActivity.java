@@ -30,5 +30,4 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(layout);
     }
-
 }
