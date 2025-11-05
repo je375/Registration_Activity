@@ -1,4 +1,4 @@
-package com.example.registration_activity;
+package com.example.registration;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,4 +30,5 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(layout);
     }
+
 }
