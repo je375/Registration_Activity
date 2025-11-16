@@ -1,4 +1,4 @@
-package registration;
+package com.example.registration;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,12 +13,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         tvUsername = new TextView(this);
         tvUsername.setText("USERNAME");
-        tvUsername.setTextSize(20);
+        tvUsername.setTextSize(16);
+        tvUsername.setTextColor(Color.BLACK);
         tvUsername.setLayoutParams(inputParams);
         mainLayout.addView(tvUsername);
 
@@ -78,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         tvPassword = new TextView(this);
         tvPassword.setText("PASSWORD");
-        tvPassword.setTextSize(20);
+        tvPassword.setTextSize(16);
+        tvPassword.setTextColor(Color.BLACK);
         tvPassword.setLayoutParams(inputParams);
         mainLayout.addView(tvPassword);
 
@@ -112,14 +114,26 @@ public class MainActivity extends AppCompatActivity {
         String user = etUsername.getText().toString().trim();
         String pass = etPassword.getText().toString().trim();
 
-        boolean match =
-                (user.equals(acc1Username) && pass.equals(acc1Password)) ||
-                        (user.equals(acc2Username) && pass.equals(acc2Password)) ||
-                        (user.equals(acc3Username) && pass.equals(acc3Password));
+        if (user.isEmpty() || pass.isEmpty()) {
+            new AlertDialog.Builder(context)
+                    .setTitle("Missing Fields")
+                    .setMessage("Please fill in both Username and Password.")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return;
+        }
 
-        if (match) {
+        SharedPreferences sharedPref = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String savedUser = sharedPref.getString("username", "");
+        String savedPass = sharedPref.getString("password", "");
+        String fname = sharedPref.getString("firstname", "");
+        String lname = sharedPref.getString("lastname", "");
+
+        if (user.equals(savedUser) && pass.equals(savedPass)) {
             Toast.makeText(context, "Logged in Successfully!", Toast.LENGTH_SHORT).show();
-            Log.i("LOGIN", "Login successful for user: " + user);
+            Intent i = new Intent(MainActivity.this, WelcomeActivity.class);
+            i.putExtra("name", fname + " " + lname);
+            startActivity(i);
         } else {
             new AlertDialog.Builder(context)
                     .setTitle("Login Failed")
@@ -133,8 +147,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(context)
             .setTitle("Register")
             .setMessage("You will be redirected to the registration screen.")
-            .setPositiveButton("OK", (dialog, which) -> {
-                // Move to Activity4 after clicking OK
+            .setPositiveButton("PROCEED", (dialog, which) -> {
                 Intent i = new Intent(MainActivity.this, RegistrationActivity.class);
                 startActivity(i);
             })
