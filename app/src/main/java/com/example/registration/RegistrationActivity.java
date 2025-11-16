@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.widget.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.content.SharedPreferences;
+import android.content.Context;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -19,6 +24,10 @@ public class RegistrationActivity extends AppCompatActivity {
             cbHobby6, cbHobby7, cbHobby8, cbHobby9, cbHobby10;
     Spinner spinnerQuestion1, spinnerQuestion2, spinnerQuestion3;
     Button btnSubmit;
+    ImageView imgProfile;
+    Button btnCamera;
+    Uri imageUri;
+    Bitmap capturedImage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,6 +59,8 @@ public class RegistrationActivity extends AppCompatActivity {
         spinnerQuestion2 = findViewById(R.id.spinnerQuestion2);
         spinnerQuestion3 = findViewById(R.id.spinnerQuestion3);
         btnSubmit = findViewById(R.id.btnSubmit);
+        imgProfile = findViewById(R.id.imgProfile);
+        btnCamera = findViewById(R.id.btnCamera);
 
         etBirthdate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
@@ -75,7 +86,25 @@ public class RegistrationActivity extends AppCompatActivity {
         spinnerQuestion2.setAdapter(adapter);
         spinnerQuestion3.setAdapter(adapter);
 
+        btnCamera.setOnClickListener(v -> openCamera());
         btnSubmit.setOnClickListener(v -> validateInputs());
+    }
+
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(cameraIntent, 100);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            capturedImage = (Bitmap) extras.get("data");
+            imgProfile.setImageBitmap(capturedImage);
+        }
     }
 
     private void validateInputs() {
@@ -91,7 +120,8 @@ public class RegistrationActivity extends AppCompatActivity {
         int genderId = genderGroup.getCheckedRadioButtonId();
 
         ArrayList<String> hobbies = new ArrayList<>();
-        CheckBox[] hobbyBoxes = {cbHobby1, cbHobby2, cbHobby3, cbHobby4, cbHobby5, cbHobby6, cbHobby7, cbHobby8, cbHobby9, cbHobby10};
+        CheckBox[] hobbyBoxes = {cbHobby1, cbHobby2, cbHobby3, cbHobby4, cbHobby5,
+                cbHobby6, cbHobby7, cbHobby8, cbHobby9, cbHobby10};
         for (CheckBox cb : hobbyBoxes) if (cb.isChecked()) hobbies.add(cb.getText().toString());
 
         String q1 = spinnerQuestion1.getSelectedItem() != null ? spinnerQuestion1.getSelectedItem().toString() : "";
@@ -114,6 +144,15 @@ public class RegistrationActivity extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setTitle("ATTENTION!")
                     .setMessage("Password did not match.")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return;
+        }
+
+        if (capturedImage == null) {
+            new AlertDialog.Builder(this)
+                    .setTitle("ATTENTION!")
+                    .setMessage("There is no Photo Taken.")
                     .setPositiveButton("OK", null)
                     .show();
             return;
@@ -182,8 +221,23 @@ public class RegistrationActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("OK", (dialog, which) -> {
 
+                    SharedPreferences sharedPref = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("username", username);
+                    editor.putString("password", password);
+                    editor.putString("firstname", firstName);
+                    editor.putString("lastname", lastName);
+
+                    if (capturedImage != null) {
+                        editor.putString("hasPhoto", "yes");
+                        WelcomeActivity.capturedBitmap = capturedImage;
+                    } else {
+                        editor.putString("hasPhoto", "no");
+                    }
+                    editor.apply();
+
                     Toast.makeText(this, "You have successfully registered!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegistrationActivity.this, WelcomeActivity.class);
+                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                     intent.putExtra("name", firstName + " " + lastName);
                     startActivity(intent);
                     finish();
